@@ -8,6 +8,6 @@ namespace IA_TP03_2
 {
     public abstract class Algoritmo
     {
-        public abstract void Resolver(IEnumerable<Camino> caminos, string ciudadInicial, string ciudadDestino);
+        public abstract bool Resolver(IEnumerable<Camino> caminos, string ciudadInicial, string ciudadDestino);
     }
 }

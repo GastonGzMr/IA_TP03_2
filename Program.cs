@@ -40,19 +40,31 @@ namespace IA_TP03_2
             string ciudadDestino = "Bucarest";
 
             DateTime inicio;
+            bool resuelto;
 
             List<Algoritmo> algoritmos = new List<Algoritmo>()
             {
                 new BusquedaEnAmplitud(),
-                new BusquedaEnProfundidad()
+                new BusquedaEnProfundidad(),
+                new BusquedaEnProfundidadLimitada(6),
+                new BusquedaEnProfundidadIterativa(),
+                new BusquedaVoraz(),
+                new BusquedaAEstrella()
             };
 
             foreach (Algoritmo algoritmo in algoritmos)
             {
                 inicio = DateTime.Now;
-                algoritmo.Resolver(caminos, ciudadInicial, ciudadDestino);
-                Console.WriteLine("Algoritmo "+algoritmo.GetType().Name+" finalizó en "+
-                    DateTime.Now.Subtract(inicio).TotalMilliseconds+" milisegundos.");
+                resuelto = algoritmo.Resolver(caminos, ciudadInicial, ciudadDestino);
+                if (resuelto)
+                {
+                    Console.WriteLine("Algoritmo " + algoritmo.GetType().Name + " finalizó en " +
+                    DateTime.Now.Subtract(inicio).TotalMilliseconds + " milisegundos.");
+                }
+                else
+                {
+                    Console.WriteLine("Algoritmo " + algoritmo.GetType().Name + " falló.");
+                }
             }
             Console.ReadLine();
         }

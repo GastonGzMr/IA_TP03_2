@@ -8,7 +8,7 @@ namespace IA_TP03_2
 {
     public class BusquedaEnProfundidad : Algoritmo
     {
-        public override void Resolver(IEnumerable<Camino> caminos, string ciudadInicial, string ciudadDestino)
+        public override bool Resolver(IEnumerable<Camino> caminos, string ciudadInicial, string ciudadDestino)
         {
             Stack<Camino> caminosSinExpandir = new Stack<Camino>();
             foreach (Camino camino in caminos.Where(x => x.CiudadDeOrigen.Equals(ciudadInicial) ||
@@ -27,6 +27,7 @@ namespace IA_TP03_2
                 }
                 caminoActual = caminosSinExpandir.Pop();
             }
+            return (caminoActual.CiudadDeOrigen.Equals(ciudadDestino) || caminoActual.CiudadDestino.Equals(ciudadDestino));
         }
     }
 }
